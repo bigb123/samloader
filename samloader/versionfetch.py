@@ -17,8 +17,13 @@ def normalizevercode(vercode: str) -> str:
 
 def getlatestver(model: str, region: str) -> str:
     """ Get the latest firmware version code for a model and region. """
+    # Accorfing to the stackoverflow discussion https://stackoverflow.com/a/54545157 there's a bug in `requests` 
+    # (related Github issue: https://github.com/psf/requests/issues/2651) and we can fix that adding `User-agent` header.
+    headers = {
+        "User-Agent": "curl/8.1.2"
+    } 
     req = requests.get("https://fota-cloud-dn.ospserver.net/firmware/" \
-        + region + "/" + model + "/version.xml")
+        + region + "/" + model + "/version.xml", headers=headers)
     if req.status_code == 403:
         raise Exception("Model or region not found (403)")
     req.raise_for_status()

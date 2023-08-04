@@ -30,7 +30,7 @@ people who are not nlscc.
 
 ## Installation
 ```
-pip3 install git+https://github.com/samloader/samloader.git
+pip3 install git+https://github.com/bigb123/samloader.git
 ```
 ## Usage
 Run with `samloader` or `python3 -m samloader`. See `samloader --help` and `samloader (command) --help` for help.
